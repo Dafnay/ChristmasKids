@@ -1,9 +1,17 @@
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
+import { useState } from 'react'
 import ChristmasTree from './components/ChristmasTree'
+import MemoryGame from './components/MemoryGame'
 import './App.css'
 
 function App() {
+  const [showMemoryGame, setShowMemoryGame] = useState(false)
+
+  if (showMemoryGame) {
+    return <MemoryGame onClose={() => setShowMemoryGame(false)} />
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-900 via-green-900 to-blue-950 text-white overflow-hidden">
       {/* Snowflakes background effect */}
@@ -57,11 +65,14 @@ function App() {
 
         {/* Features Section */}
         <div className="grid md:grid-cols-3 gap-8">
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 hover:bg-white/20 transition">
-            <div className="text-5xl mb-4">🎁</div>
-            <h3 className="text-2xl font-bold mb-3">Juego 1</h3>
-            <p className="text-gray-200">Descripción del juego 1</p>
-          </div>
+          <button
+            onClick={() => setShowMemoryGame(true)}
+            className="bg-white/10 backdrop-blur-md rounded-2xl p-8 hover:bg-white/20 transition cursor-pointer text-left"
+          >
+            <div className="text-5xl mb-4">🧠</div>
+            <h3 className="text-2xl font-bold mb-3">Memory Game</h3>
+            <p className="text-gray-200">Match the Christmas cards!</p>
+          </button>
 
           <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 hover:bg-white/20 transition">
             <div className="text-5xl mb-4">🎅</div>
